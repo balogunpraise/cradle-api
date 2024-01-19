@@ -9,5 +9,7 @@ namespace Cradle.Domain.Entities.Common
     public class BaseEntity
     {
         public Guid Id { get; set; }
+        public Guid SchoolId { get; set; }
+        public Guid TenantId { get; set; }
     }
 }
