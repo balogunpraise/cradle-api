@@ -12,7 +12,7 @@ namespace Cradle.Domain.Entities
         public string Title { get; set; }
         public string Body { get; set; }
         public bool IsRead { get; set; }
-        public Guid SenderId { get; set; }
-        public Guid ReciepientId { get; set; }
+        public string SenderId { get; set; }
+        public string ReciepientId { get; set; }
     }
 }

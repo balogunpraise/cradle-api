@@ -10,7 +10,7 @@ namespace Cradle.Domain.Entities
         public DateTimeOffset StartTime { get; set; }
         public DateTimeOffset FinishTime { get; set; }
         public bool IsRecurrent { get; set; }
-        public Guid CoachId { get; set; }
+        public string CoachId { get; set; }
 
         [ForeignKey("CoachId")]
         public Coach CoachFk { get; set; }

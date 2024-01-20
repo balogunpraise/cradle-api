@@ -1,8 +1,8 @@
-﻿using Cradle.Domain.Entities.LinkingEntities;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace Cradle.Domain.Entities
+namespace Cradle.Domain.Entities.Account
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

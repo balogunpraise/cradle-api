@@ -1,4 +1,5 @@
-﻿using Cradle.Domain.Entities.Common;
+﻿using Cradle.Domain.Entities.Account;
+using Cradle.Domain.Entities.Common;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cradle.Domain.Entities
@@ -11,7 +12,7 @@ namespace Cradle.Domain.Entities
         public string LastName { get; set; }
         public bool IsSuceeded { get; set; }
         public string Status { get; set; }
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         public ApplicationUser UserFk { get; set; }

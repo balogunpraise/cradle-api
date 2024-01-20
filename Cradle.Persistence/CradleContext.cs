@@ -1,11 +1,19 @@
 ﻿using Cradle.Domain.Entities;
+using Cradle.Domain.Entities.Account;
 using Cradle.Domain.Entities.Common;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cradle.Persistence
 {
-    public class CradleContext(DbContextOptions<CradleContext> options) : DbContext(options)
+    public class CradleContext : IdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>,
+        IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
     {
+        public CradleContext(DbContextOptions option) : base(option)
+        {
+            
+        }
         public DbSet<Course> Courses { get; set; }
 
 
