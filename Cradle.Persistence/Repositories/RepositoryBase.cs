@@ -13,16 +13,15 @@ namespace Cradle.Persistence.Repositories
             return entity;
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(T entity)
         {
-            await _context.Set<T>().ExecuteDeleteAsync();
+            _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
         }
 
         public async Task<T> GetByIdAsync(Guid id)
         {
-            var result = await _context.Set<T>().FindAsync(id);
-            return result;
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
@@ -32,7 +31,8 @@ namespace Cradle.Persistence.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -13,11 +13,11 @@ namespace Cradle.Domain.Entities
         public string Difficulty { get; set; }
         public string ImageUrl { get; set; }
         //public DateTime? ExpiryDate { get; set; }
-        public virtual ICollection<UserCourse> Students { get; set; }
+        public virtual ICollection<StudentCourse> Students { get; set; }
 
         public Course()
         {
-            Students = new List<UserCourse>();
+            Students = new List<StudentCourse>();
         }
     }
 }

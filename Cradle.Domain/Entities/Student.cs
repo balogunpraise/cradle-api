@@ -1,10 +1,6 @@
 ﻿using Cradle.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
+using Cradle.Domain.Entities.LinkingEntities;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cradle.Domain.Entities
 {
@@ -21,6 +17,15 @@ namespace Cradle.Domain.Entities
 
         [ForeignKey("SchoolId")]
         public School SchoolFk { get; set; }
+
+        public virtual ICollection<StudentCourse> Courses { get; set; }
+        public virtual ICollection<StudentAssignment> Assignments { get; set; }
+
+        public Student()
+        {
+            Assignments = new List<StudentAssignment>();
+            Courses = new List<StudentCourse>();
+        }
 
     }
 }

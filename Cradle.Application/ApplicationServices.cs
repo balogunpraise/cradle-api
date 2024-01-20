@@ -4,7 +4,7 @@ namespace Cradle.Application
 {
     public static class ApplicationServices
     {
-        public static IServiceCollection AddApplicationServices(IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMediatR(config => 

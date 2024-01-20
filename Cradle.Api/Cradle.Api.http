@@ -1,0 +1,6 @@
+@Cradle.Api_HostAddress = http://localhost:5018
+
+GET {{Cradle.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

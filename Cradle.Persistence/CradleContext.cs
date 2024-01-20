@@ -9,6 +9,12 @@ namespace Cradle.Persistence
         public DbSet<Course> Courses { get; set; }
 
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(typeof(CradleContext).Assembly);
+        }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken
             = new CancellationToken())
         {

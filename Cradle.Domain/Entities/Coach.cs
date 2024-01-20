@@ -1,10 +1,5 @@
 ﻿using Cradle.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cradle.Domain.Entities
 {
@@ -26,5 +21,7 @@ namespace Cradle.Domain.Entities
 
         [ForeignKey("SchoolId")]
         public School SchoolFk { get; set; }
+        public ICollection<Schedule> Schedules { get; set; }
+        public ICollection<InternalMessage> InternalMessages { get; set; }
     }
 }
