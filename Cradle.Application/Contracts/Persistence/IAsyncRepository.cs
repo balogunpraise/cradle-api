@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cradle.Application.Parameters;
+using Cradle.Application.Wrappers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,7 @@ namespace Cradle.Application.Contracts.Persistence
     {
         Task<T> GetByIdAsync(Guid id);
         Task<IReadOnlyList<T>> ListAllAsync();
+        Task<PagedList<T>> ListAllAsync(RequestParameter req);
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entitty);
