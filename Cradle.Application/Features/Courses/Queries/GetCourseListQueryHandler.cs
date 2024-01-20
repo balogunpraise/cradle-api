@@ -11,7 +11,8 @@ namespace Cradle.Application.Features.Courses.Queries
         private readonly ICourseRepository _courseRepository = courseRepository;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<List<CourseVm>> Handle(GetCourseListQuery request, CancellationToken cancellationToken)
+        public async Task<List<CourseVm>> Handle(GetCourseListQuery request, 
+            CancellationToken cancellationToken)
         {
             var courses = await _courseRepository.ListAllAsync(request.Request);
             return _mapper.Map<List<CourseVm>>(courses);
