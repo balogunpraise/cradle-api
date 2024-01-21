@@ -7,12 +7,12 @@ namespace Cradle.Application.Features.Courses.Commands
 {
     public class CreateCourseCommandHandler(ICourseRepository courseRepository,
         IMapper mapper)
-        : IRequestHandler<CreateCourseCommand, Guid>
+        : IRequestHandler<CreateCourseCommand, string>
     {
         private readonly IMapper _mapper = mapper;
         private readonly ICourseRepository _courseRepository = courseRepository;
 
-        public async Task<Guid> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
         {
             var @course = _mapper.Map<Course>(request);
             var validator = new CreateCourseCommandValidator(_courseRepository);

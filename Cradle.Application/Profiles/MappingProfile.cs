@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Cradle.Application.Features.Courses.Commands;
-using Cradle.Application.Features.Courses.Queries;
+using Cradle.Application.Features.Courses.Queries.GetCoursesPagedList;
 using Cradle.Domain.Entities;
 
 namespace Cradle.Application.Profiles

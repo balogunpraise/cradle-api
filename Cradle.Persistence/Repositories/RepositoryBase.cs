@@ -7,7 +7,7 @@ namespace Cradle.Persistence.Repositories
 {
     public class RepositoryBase<T>(CradleContext context) : IAsyncRepository<T> where T : class
     {
-        private readonly CradleContext _context = context;
+        protected readonly CradleContext _context = context;
         public async Task<T> AddAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
@@ -29,16 +29,6 @@ namespace Cradle.Persistence.Repositories
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
-        }
-
-        public async Task<PagedList<T>> ListAllAsync(RequestParameter req)
-        {
-            var count = await _context.Set<T>().CountAsync();
-            var result = await _context.Set<T>()
-                .Skip((req.PageNumber * req.PageSize) - req.PageSize)
-                .Take(req.PageSize)
-                .ToListAsync();
-            return PagedList<T>.ToPagedList(result, req.PageNumber, req.PageSize, count);
         }
 
         public async Task UpdateAsync(T entity)

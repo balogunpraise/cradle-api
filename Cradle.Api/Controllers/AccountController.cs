@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
 
 namespace Cradle.Api.Controllers
 {
-    public class AccountController : BaseApiController
+    public class AccountController(IMediator mediator) : BaseApiController(mediator)
     {
+        
     }
 }

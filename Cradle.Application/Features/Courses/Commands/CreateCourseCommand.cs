@@ -2,7 +2,7 @@
 
 namespace Cradle.Application.Features.Courses.Commands
 {
-    public class CreateCourseCommand : IRequest<Guid>
+    public class CreateCourseCommand : IRequest<string>
     {
         public string Name { get; set; }
         public string Description { get; set; }
