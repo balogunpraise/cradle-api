@@ -1,5 +1,4 @@
-﻿using Cradle.Application.Features.Courses.Queries;
-using Cradle.Application.Features.Courses.Queries.GetCoursesPagedList;
+﻿using Cradle.Application.Features.Courses.Queries.GetCoursesPagedList;
 using Cradle.Application.Parameters;
 using Cradle.Application.Wrappers;
 using MediatR;
@@ -16,7 +15,8 @@ namespace Cradle.Api.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> GetCourseList(RequestParameter request)
         {
-            return Ok(await _mediator.Send(new GetCourseListQuery() { Request = request}));
+            var data = await _mediator.Send(new GetCourseListQuery() { Request = request });
+            return Ok(new ApiResponse<PagedList<CourseVm>>(data, 200));
         }
     }
 }

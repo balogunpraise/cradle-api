@@ -4,6 +4,7 @@ namespace Cradle.Domain.Entities.Account
 {
     public class ApplicationUser : IdentityUser
     {
+        public string TenantId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool IsSubscribed { get; set; }

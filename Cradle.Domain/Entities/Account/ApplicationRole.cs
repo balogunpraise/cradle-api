@@ -9,5 +9,6 @@ namespace Cradle.Domain.Entities.Account
 {
     public class ApplicationRole : IdentityRole
     {
+        public string TenantId { get; set; }
     }
 }
