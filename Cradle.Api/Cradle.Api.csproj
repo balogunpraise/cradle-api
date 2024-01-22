@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Cradle.Persistence\Cradle.Persistence.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1" />
+	</ItemGroup>
+
 </Project>

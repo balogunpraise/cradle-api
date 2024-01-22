@@ -2,6 +2,7 @@
 using Cradle.Infrastructure;
 using Cradle.Persistence;
 using Cradle.Application;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Cradle.Api
 {

@@ -10,7 +10,12 @@ namespace Cradle.Persistence
     public class CradleContext : IdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>,
         IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
     {
-        public CradleContext(DbContextOptions option) : base(option)
+        public CradleContext(DbContextOptions<CradleContext> option) : base(option)
+        {
+            
+        }
+
+        public CradleContext()
         {
             
         }
@@ -24,6 +29,12 @@ namespace Cradle.Persistence
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(CradleContext).Assembly);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("cradledatabase");
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken
