@@ -12,13 +12,13 @@ namespace Cradle.Persistence
     {
         public CradleContext(DbContextOptions<CradleContext> option) : base(option)
         {
-            
-        }
 
+        }
         public CradleContext()
         {
             
         }
+
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Grade> Grades { get; set; }
@@ -34,7 +34,10 @@ namespace Cradle.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("cradledatabase");
+            var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+            var connectionString = isDevelopment ? "User ID=postgres;Password=fuTune@123;Host=localhost;Port=5432;Database=cradledata;Include Error Detail=true;"
+                : Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            optionsBuilder.UseNpgsql(connectionString);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken

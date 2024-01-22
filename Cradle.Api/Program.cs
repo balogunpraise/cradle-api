@@ -3,6 +3,7 @@ using Cradle.Infrastructure;
 using Cradle.Persistence;
 using Cradle.Application;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cradle.Api
 {
@@ -21,6 +22,14 @@ namespace Cradle.Api
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddApplicationServices();
             builder.Services.AddSwaggerGen();
+
+            /*var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+            var connectionString = isDevelopment ? builder.Configuration.GetConnectionString("DefaultConnection")
+                : Environment.GetEnvironmentVariable("CONNECTION_STRING");*/
+
+            /*builder.Services.AddDbContext<CradleContext>(option =>
+             option.UseNpgsql(connectionString));*/
+
             builder.Services.AddCors(options => options.AddPolicy(
                 "open",
                 policy => policy.WithOrigins([builder.Configuration["ApiUrl"] ?? "https://localhost:7008",

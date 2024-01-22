@@ -26,8 +26,7 @@
     <Folder Include="Features\Instructors\Queries\" />
     <Folder Include="Features\Students\Commands\" />
     <Folder Include="Features\Students\Queries\" />
-    <Folder Include="Features\Tenant\Command\" />
-    <Folder Include="Features\Tenant\Query\" />
+    <Folder Include="Features\TenantFeature\Query\" />
     <Folder Include="Features\Transactions\Commands\" />
     <Folder Include="Features\Transactions\Queries\" />
     <Folder Include="Features\Videos\Commands\" />

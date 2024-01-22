@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,11 +16,11 @@ namespace Cradle.Persistence.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,26 +31,26 @@ namespace Cradle.Persistence.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsSubscribed = table.Column<bool>(type: "bit", nullable: false),
-                    IsStudent = table.Column<bool>(type: "bit", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    IsSubscribed = table.Column<bool>(type: "boolean", nullable: false),
+                    IsStudent = table.Column<bool>(type: "boolean", nullable: false),
+                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,14 +61,14 @@ namespace Cradle.Persistence.Migrations
                 name: "Assignment",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,17 +79,17 @@ namespace Cradle.Persistence.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CourseCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    CourseCode = table.Column<string>(type: "text", nullable: true),
+                    ImageUrl = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,15 +100,15 @@ namespace Cradle.Persistence.Migrations
                 name: "Schools",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShortCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    ShortCode = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -118,12 +119,12 @@ namespace Cradle.Persistence.Migrations
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    RoleId = table.Column<string>(type: "text", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -140,11 +141,11 @@ namespace Cradle.Persistence.Migrations
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -161,10 +162,10 @@ namespace Cradle.Persistence.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    LoginProvider = table.Column<string>(type: "text", nullable: false),
+                    ProviderKey = table.Column<string>(type: "text", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -181,8 +182,8 @@ namespace Cradle.Persistence.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    RoleId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -205,10 +206,10 @@ namespace Cradle.Persistence.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    LoginProvider = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Value = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -225,22 +226,22 @@ namespace Cradle.Persistence.Migrations
                 name: "BillingInfo",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CardNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CardExpiration = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CVV = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    Country = table.Column<string>(type: "text", nullable: true),
+                    State = table.Column<string>(type: "text", nullable: true),
+                    PostalCode = table.Column<string>(type: "text", nullable: true),
+                    CardNumber = table.Column<string>(type: "text", nullable: true),
+                    CardExpiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CVV = table.Column<string>(type: "text", nullable: true),
+                    IsDefault = table.Column<bool>(type: "boolean", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -256,14 +257,14 @@ namespace Cradle.Persistence.Migrations
                 name: "Level",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    GradeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    GradeName = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -279,20 +280,20 @@ namespace Cradle.Persistence.Migrations
                 name: "Coach",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Salary = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GradeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    IsClassTeacher = table.Column<bool>(type: "bit", nullable: false),
-                    SchoolId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    MiddleName = table.Column<string>(type: "text", nullable: true),
+                    SurName = table.Column<string>(type: "text", nullable: true),
+                    Salary = table.Column<string>(type: "text", nullable: true),
+                    GradeId = table.Column<string>(type: "text", nullable: true),
+                    CourseId = table.Column<string>(type: "text", nullable: true),
+                    IsClassTeacher = table.Column<bool>(type: "boolean", nullable: false),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -318,17 +319,17 @@ namespace Cradle.Persistence.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GradeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    SurName = table.Column<string>(type: "text", nullable: true),
+                    MiddleName = table.Column<string>(type: "text", nullable: true),
+                    GradeId = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -349,20 +350,20 @@ namespace Cradle.Persistence.Migrations
                 name: "InternalMessage",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsRead = table.Column<bool>(type: "bit", nullable: false),
-                    SenderId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReciepientId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CoachId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    Body = table.Column<string>(type: "text", nullable: true),
+                    IsRead = table.Column<bool>(type: "boolean", nullable: false),
+                    SenderId = table.Column<string>(type: "text", nullable: true),
+                    ReciepientId = table.Column<string>(type: "text", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "text", nullable: true),
+                    CoachId = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -383,19 +384,19 @@ namespace Cradle.Persistence.Migrations
                 name: "Schedules",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    FinishTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    IsRecurrent = table.Column<bool>(type: "bit", nullable: false),
-                    CoachId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    Note = table.Column<string>(type: "text", nullable: true),
+                    StartTime = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    FinishTime = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    IsRecurrent = table.Column<bool>(type: "boolean", nullable: false),
+                    CoachId = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -411,17 +412,17 @@ namespace Cradle.Persistence.Migrations
                 name: "Grades",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CourseName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Purpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    CourseName = table.Column<string>(type: "text", nullable: true),
+                    Purpose = table.Column<string>(type: "text", nullable: true),
                     Score = table.Column<float>(type: "real", nullable: false),
-                    StudentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    SchoolId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    StudentId = table.Column<string>(type: "text", nullable: true),
+                    SchoolId = table.Column<string>(type: "text", nullable: true),
+                    TenantId = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdateBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -437,8 +438,8 @@ namespace Cradle.Persistence.Migrations
                 name: "StudentAssignment",
                 columns: table => new
                 {
-                    StudentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AssignmentId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    StudentId = table.Column<string>(type: "text", nullable: false),
+                    AssignmentId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -461,8 +462,8 @@ namespace Cradle.Persistence.Migrations
                 name: "StudentCourse",
                 columns: table => new
                 {
-                    StudentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    StudentId = table.Column<string>(type: "text", nullable: false),
+                    CourseId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -490,8 +491,7 @@ namespace Cradle.Persistence.Migrations
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -517,8 +517,7 @@ namespace Cradle.Persistence.Migrations
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_BillingInfo_ApplicationUserId",

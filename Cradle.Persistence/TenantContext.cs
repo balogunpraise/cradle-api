@@ -24,8 +24,8 @@ namespace Cradle.Persistence
         {
             foreach(var entry in ChangeTracker.Entries<Tenant>())
             {
-                entry.Entity.ConnectionString = entry.Entity.ConnectionString
-                    ?? _config.GetConnectionString("cradledatabase");
+                entry.Entity.ConnectionString = string.IsNullOrWhiteSpace(entry.Entity.ConnectionString)
+                    ? _config.GetConnectionString("cradledatabase") : entry.Entity.ConnectionString;
             }
             return base.SaveChangesAsync(cancellationToken);
         }

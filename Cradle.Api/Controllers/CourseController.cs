@@ -9,11 +9,11 @@ namespace Cradle.Api.Controllers
 {
     public class CourseController(IMediator mediator) : BaseApiController(mediator)
     {
-        [HttpPost("course")]
-        [Consumes(MediaTypeNames.Application.Json)]
+        [HttpGet("course")]
+        //[Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(ApiResponse<PagedList<CourseVm>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> GetCourseList(RequestParameter request)
+        public async Task<ActionResult> GetCourseList([FromQuery]RequestParameter request)
         {
             var data = await _mediator.Send(new GetCourseListQuery() { Request = request });
             return Ok(new ApiResponse<PagedList<CourseVm>>(data, 200));
