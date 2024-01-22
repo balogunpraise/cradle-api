@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cradle.Domain.Entities
 {
-    internal class TutorialVideos
+    public class TutorialVideos
     {
     }
 }

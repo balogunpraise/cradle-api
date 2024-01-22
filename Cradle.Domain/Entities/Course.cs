@@ -9,7 +9,6 @@ namespace Cradle.Domain.Entities
         public string Description { get; set; }
         public string CourseCode { get; set; }
         public string ImageUrl { get; set; }
-        //public DateTime? ExpiryDate { get; set; }
         public virtual ICollection<StudentCourse> Students { get; set; }
 
         public Course()

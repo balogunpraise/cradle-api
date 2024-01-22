@@ -12,6 +12,5 @@ namespace Cradle.Domain.Entities
         public DateTime CardExpiration { get; set; }
         public string CVV { get; set; }
         public bool IsDefault { get; set; }
-
     }
 }

@@ -15,7 +15,10 @@ namespace Cradle.Persistence
             
         }
         public DbSet<Course> Courses { get; set; }
-
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<School> Schools { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
