@@ -22,6 +22,7 @@ namespace Cradle.Api
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddApplicationServices();
             builder.Services.AddIdentitySettings();
+            builder.Services.AddAuthenticationServices(builder.Configuration);
             builder.Services.AddSwaggerGen();
 
             /*var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
