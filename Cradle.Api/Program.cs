@@ -21,6 +21,7 @@ namespace Cradle.Api
             builder.Services.RegisterInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddApplicationServices();
+            builder.Services.AddIdentitySettings();
             builder.Services.AddSwaggerGen();
 
             /*var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
@@ -40,7 +41,7 @@ namespace Cradle.Api
                 .AllowCredentials()));
 
             var app = builder.Build();
-            
+            app.SeedDatabase();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
