@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cradle.Persistence.Migrations.Tenant
 {
     [DbContext(typeof(TenantContext))]
-    [Migration("20240122201821_TenantInitial")]
-    partial class TenantInitial
+    [Migration("20240124210550_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

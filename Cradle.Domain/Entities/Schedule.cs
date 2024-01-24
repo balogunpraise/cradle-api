@@ -7,8 +7,8 @@ namespace Cradle.Domain.Entities
     {
         public string Title { get; set; }
         public string Note { get; set; }
-        public DateTimeOffset StartTime { get; set; }
-        public DateTimeOffset FinishTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime FinishTime { get; set; }
         public bool IsRecurrent { get; set; }
         public string CoachId { get; set; }
 

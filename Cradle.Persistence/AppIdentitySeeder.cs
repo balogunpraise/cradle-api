@@ -1,5 +1,10 @@
-﻿using Cradle.Application.Common.Authorization;
+﻿using Azure.Core;
+using Cradle.Application.Common.Authorization;
+using Cradle.Application.Contracts.Persistence;
+using Cradle.Application.Features.TenantFeature.Command.RegisterTenant;
+using Cradle.Domain.Entities;
 using Cradle.Domain.Entities.Account;
+using Cradle.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,14 +15,19 @@ namespace Cradle.Persistence
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly CradleContext _context;
+        private readonly ITenantRepository _tenantRepository;
+        private readonly ISchoolRepository _schoolRepository;
 
         public AppIdentitySeeder(UserManager<ApplicationUser> userManager,
             RoleManager<ApplicationRole> roleManager,
-            CradleContext context)
+            CradleContext context, ITenantRepository tenantRepository
+            , ISchoolRepository schoolRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
+            _tenantRepository = tenantRepository;
+            _schoolRepository = schoolRepository;
         }
 
         public async Task SeedDatabaseAsync()
@@ -38,6 +48,9 @@ namespace Cradle.Persistence
 
         private async Task SeedUserAsync()
         {
+            var tenant = await CreateDefaultTenant();
+            var school = await CreateNewSchool(tenant, tenant.Id);
+
             var exits = await _userManager.FindByEmailAsync(AppCredentials.AdminEmail);
             if (exits == null)
             {
@@ -46,7 +59,9 @@ namespace Cradle.Persistence
                     Email = AppCredentials.AdminEmail,
                     UserName = AppCredentials.AdminEmail.Split("@")[0],
                     FirstName = "Test Firstname",
-                    LastName = "Test Lastname"
+                    LastName = "Test Lastname",
+                    TenantId = tenant.Id,
+                    SchoolId = school
                 };
                 await _userManager.CreateAsync(user, AppCredentials.AdminPassword);
                 if (!await _userManager.IsInRoleAsync(user, AppRoles.Admin))
@@ -64,7 +79,9 @@ namespace Cradle.Persistence
                     Email = AppCredentials.BasicEmail,
                     UserName = AppCredentials.BasicEmail.Split("@")[0],
                     FirstName = "Basic First",
-                    LastName = "Basic Last"
+                    LastName = "Basic Last",
+                    TenantId = tenant.Id,
+                    SchoolId = school
                 };
 
                 await _userManager.CreateAsync(basicUser, AppCredentials.BasicPassword);
@@ -119,6 +136,31 @@ namespace Cradle.Persistence
                     await _context.SaveChangesAsync();
                 }
             }
+        }
+
+        private async Task<Tenant> CreateDefaultTenant()
+        {
+            var secret = Guid.NewGuid().ToString();
+            var tenant = new Tenant
+            {
+                Name = "crest",
+                Secret = secret,
+                ConnectionString = string.Empty
+            };
+            await _tenantRepository.RegisterTenant(tenant);
+            return tenant;
+        }
+
+        private async Task<string> CreateNewSchool(Tenant tenant, string tenantId)
+        {
+            var school = new School
+            {
+                Name = tenant.Name,
+                ShortCode = "TET",
+                TenantId = tenantId
+            };
+            await _schoolRepository.CreateSchool(school);
+            return school.Id;
         }
 
     }

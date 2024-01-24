@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cradle.Persistence.Migrations
 {
     [DbContext(typeof(CradleContext))]
-    [Migration("20240123081221_CradleContextSecond")]
-    partial class CradleContextSecond
+    [Migration("20240124210526_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -151,6 +151,9 @@ namespace Cradle.Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("SchoolId")
+                        .HasColumnType("text");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -181,7 +184,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -199,7 +202,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -230,7 +233,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -254,7 +257,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -272,7 +275,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("CourseId")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -305,7 +308,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -327,7 +330,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("CourseCode")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -351,7 +354,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -367,7 +370,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("CourseName")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -391,7 +394,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -415,7 +418,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("CoachId")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -442,7 +445,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -459,7 +462,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -477,7 +480,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -525,13 +528,13 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("CoachId")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("FinishTime")
+                    b.Property<DateTime>("FinishTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsRecurrent")
@@ -543,7 +546,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("SchoolId")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("StartTime")
+                    b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("TenantId")
@@ -555,7 +558,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -570,7 +573,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -591,7 +594,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -604,7 +607,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatedBy")
@@ -631,7 +634,7 @@ namespace Cradle.Persistence.Migrations
                     b.Property<string>("UpdateBy")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");

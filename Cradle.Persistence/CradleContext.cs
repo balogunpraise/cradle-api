@@ -48,10 +48,10 @@ namespace Cradle.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedAt = DateTimeOffset.Now;
+                        entry.Entity.CreatedAt = DateTime.UtcNow;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.UpdatedAt = DateTimeOffset.Now;
+                        entry.Entity.UpdatedAt = DateTime.UtcNow;
                         break;
 
                 }
