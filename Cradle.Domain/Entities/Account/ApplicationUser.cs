@@ -9,6 +9,7 @@ namespace Cradle.Domain.Entities.Account
         public string LastName { get; set; }
         public bool IsSubscribed { get; set; }
         public bool IsStudent { get; set; }
+        public string SchoolId { get; set; }
         public ICollection<InternalMessage> Messages { get; set; }
         public ICollection<BillingInfo> BillingInfos { get; set; }
         public ApplicationUser()

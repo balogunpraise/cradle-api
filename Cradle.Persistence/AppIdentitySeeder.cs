@@ -18,7 +18,6 @@ namespace Cradle.Persistence
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
-
         }
 
         public async Task SeedDatabaseAsync()

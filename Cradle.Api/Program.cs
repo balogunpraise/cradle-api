@@ -21,16 +21,11 @@ namespace Cradle.Api
             builder.Services.RegisterInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddApplicationServices();
+            builder.Services.AddScoped<AppIdentitySeeder>();
             builder.Services.AddIdentitySettings();
             builder.Services.AddAuthenticationServices(builder.Configuration);
             builder.Services.AddSwaggerGen();
 
-            /*var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
-            var connectionString = isDevelopment ? builder.Configuration.GetConnectionString("DefaultConnection")
-                : Environment.GetEnvironmentVariable("CONNECTION_STRING");*/
-
-            /*builder.Services.AddDbContext<CradleContext>(option =>
-             option.UseNpgsql(connectionString));*/
 
             builder.Services.AddCors(options => options.AddPolicy(
                 "open",
@@ -42,6 +37,7 @@ namespace Cradle.Api
                 .AllowCredentials()));
 
             var app = builder.Build();
+
             app.SeedDatabase();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -51,7 +47,7 @@ namespace Cradle.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

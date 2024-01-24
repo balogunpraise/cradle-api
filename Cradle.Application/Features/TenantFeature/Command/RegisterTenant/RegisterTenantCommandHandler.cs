@@ -19,6 +19,8 @@ namespace Cradle.Application.Features.TenantFeature.Command.RegisterTenant
         {
             _tenantRepository = tenantRepository;
             _schoolRepository = schoolRepository;
+            _userManager = userManager;
+            _roleManager = roleManager;
 
         }
         public async Task Handle(RegisterTenantCommand request, CancellationToken cancellationToken)
@@ -59,6 +61,7 @@ namespace Cradle.Application.Features.TenantFeature.Command.RegisterTenant
                 FirstName = $"{tenant.Name} Admin",
                 LastName = tenant.Name,
                 Email = tenant.Email,
+                TenantId = tenantId
             };
             await _userManager.CreateAsync(user, tenant.Password);
             await _userManager.AddToRoleAsync(user, "Admin");
