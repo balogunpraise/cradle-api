@@ -42,7 +42,7 @@ namespace Cradle.Api
             return services;
         }
 
-        internal static void AddAuthenticationServices(this IServiceCollection services, IConfiguration configuration)
+        internal static IServiceCollection AddAuthenticationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(option =>
             {
@@ -68,6 +68,8 @@ namespace Cradle.Api
                 .AddEntityFrameworkStores<CradleContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<ITokenService, TokenService>();
+
+            return services;
         }
     }
 }

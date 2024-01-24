@@ -8,7 +8,7 @@ namespace Cradle.Persistence
 {
     public static class PersistenceServices
     {
-        public static void AddPersistenceServices(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration config)
         {
             var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
             var connectionString = isDevelopment ? config.GetConnectionString("DefaultConnection") 
@@ -17,8 +17,9 @@ namespace Cradle.Persistence
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ITenantRepository, TenantRepository>();
+            services.AddScoped<ISchoolRepository, SchoolRepository>();
             services.AddDbContext<TenantContext>(options => options.UseNpgsql(config.GetConnectionString("TenantConnection")));
-            //return services;
+            return services;
         }
     }
 }

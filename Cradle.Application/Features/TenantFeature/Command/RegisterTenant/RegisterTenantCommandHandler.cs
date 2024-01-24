@@ -34,7 +34,7 @@ namespace Cradle.Application.Features.TenantFeature.Command.RegisterTenant
             };
             await _tenantRepository.RegisterTenant(tenant);
             await CreateNewSchool(request, tenant.Id);
-            
+            await CreateAdminAccount(request, tenant.Id);
         }
 
 

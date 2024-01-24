@@ -13,12 +13,12 @@ namespace Cradle.Infrastructure
 {
     public static class InfrastructureServices
     {
-        public static void RegisterInfrastructureServices(this IServiceCollection services,
+        public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services,
             IConfiguration config)
         {
             //services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
             services.AddTransient<IEmailService, EmailService>();
-            //return services;
+            return services;
         }
     }
 }
